@@ -1,6 +1,6 @@
 #include <iostream>
 #include <math.h>
-#include "Test.h"
+#include "PtrDetails.h"
 
 void basicPointerAssignment() {
     int val = 20;
@@ -65,7 +65,6 @@ void tryArrayCreateResize() {
 }
 
 int main() {
-    Test<int> t(4);
-    std::cout << t.getValue() << std::endl;
+    PtrDetails<int> ptr(new int);
     return 0;
 }
