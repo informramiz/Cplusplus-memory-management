@@ -105,7 +105,27 @@ void tryUniquePointer() {
     std::cout << "ptr2: " << ptr2.get() << std::endl;
 }
 
+void trySharedPtr() {
+    std::cout << "------shared ptr-------" << std::endl;
+    std::shared_ptr<int> ptr1(new int(4));
+    
+    std::cout << "ptr1: " << ptr1 << std::endl;
+    std::cout << "*ptr1: " << *ptr1 << std::endl;
+    std::cout << "reference cout: " << ptr1.use_count() << std::endl;
+    
+    std::cout << "--> Assign to new pointer" << std::endl;
+    std::shared_ptr<int> ptr2 = ptr1;
+    
+    std::cout << "ptr1: " << ptr1 << std::endl;
+    std::cout << "*ptr1: " << *ptr1 << std::endl;
+    std::cout << "ptr2: " << ptr2 << std::endl;
+    std::cout << "*ptr2: " << *ptr2 << std::endl;
+    std::cout << "reference cout: " << ptr1.use_count() << std::endl;
+    
+    std::cout << "------end----------" << std::endl;
+}
+
 int main() {
-    tryUniquePointer();
+    trySharedPtr();
     return 0;
 }
