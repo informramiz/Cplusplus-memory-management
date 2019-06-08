@@ -1,5 +1,6 @@
 #include <iostream>
 #include <math.h>
+#include <string>
 #include "PtrDetails.h"
 
 void basicPointerAssignment() {
@@ -64,7 +65,34 @@ void tryArrayCreateResize() {
     delete []newArray;
 }
 
+void addSpaces(const char* &str) {
+    char* newStr = new char(sizeof(str) * 2);
+    
+    char* newStrStart = newStr;
+    while (*str != '\0') {
+        *newStr = *str;
+        newStr++;
+        str++;
+        *newStr = ' ';
+        newStr++;
+    }
+    
+    *newStr = '\0';
+    //because pointer param is received as a reference param so we can directly change its
+    //value here
+    str = newStrStart;
+}
+
+void tryStringManipulation() {
+    std::string str = "Hello world";
+    const char* ptr = str.c_str();
+    std::cout << "ptr: " << ptr << std::endl;
+    addSpaces(ptr);
+    std::cout << ptr << std::endl;
+}
+
 int main() {
-    PtrDetails<int> ptr(new int);
+    //PtrDetails<int> ptr(new int);
+    tryStringManipulation();
     return 0;
 }
