@@ -41,7 +41,29 @@ void tryParamsByReference() {
     std::cout << "Cos: " << _cos << std::endl;
 }
 
+int* createArray(int n) {
+    return new int[n];
+}
+
+int* resizeArray(int* array, int size, int expandBy) {
+    int* newArray = new int[size + expandBy];
+    for (int i = 0; i  < size; i++) {
+        newArray[i] = array[i];
+    }
+    
+    //deallocate the old array
+    delete []array;
+    return newArray;
+}
+
+void tryArrayCreateResize() {
+    int* array = createArray(3);
+    int* newArray = resizeArray(array, 3, 2);
+    
+    delete []newArray;
+}
+
 int main() {
-    tryParamsByReference();
+    tryArrayCreateResize();
     return 0;
 }
