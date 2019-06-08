@@ -1,6 +1,7 @@
 #include <iostream>
 #include <math.h>
 #include <string>
+#include <memory>
 #include "PtrDetails.h"
 
 void basicPointerAssignment() {
@@ -91,8 +92,20 @@ void tryStringManipulation() {
     std::cout << ptr << std::endl;
 }
 
+void tryUniquePointer() {
+    std::unique_ptr<int> ptr1(new int(4));
+    std::cout << "*ptr1: " << *ptr1 << std::endl;
+    std::cout << "ptr1: " << ptr1.get() << std::endl;
+    
+    //move the ownership to new ptr2, after this ptr1 should be 0x0 as it no longer has ownership
+    std::unique_ptr<int> ptr2 = std::move(ptr1);
+    std::cout << "-------after move ownership to ptr2--------" << std::endl;
+    std::cout << "after move, ptr1: " << ptr1 << std::endl;
+    std::cout << "*ptr2: " << *ptr2 << std::endl;
+    std::cout << "ptr2: " << ptr2.get() << std::endl;
+}
+
 int main() {
-    //PtrDetails<int> ptr(new int);
-    tryStringManipulation();
+    tryUniquePointer();
     return 0;
 }
